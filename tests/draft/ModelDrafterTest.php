@@ -8,6 +8,8 @@ use Tests\Support\SchemasTestCase;
  */
 final class ModelDrafterTest extends SchemasTestCase
 {
+    private ?ModelHandler $handler = null;
+
     protected function setUp(): void
     {
         parent::setUp();
