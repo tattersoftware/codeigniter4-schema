@@ -35,7 +35,7 @@ final class DatabaseDrafterTest extends SchemasTestCase
 
     public function testHasSpecificTable()
     {
-        $this->assertObjectHasAttribute('factories', $this->schema->tables);
+        $this->assertTrue(property_exists($this->schema->tables, 'factories'));
     }
 
     public function testDetectsPivotTablesWithFK()
@@ -50,7 +50,7 @@ final class DatabaseDrafterTest extends SchemasTestCase
 
     public function testIgnoredTables()
     {
-        $this->assertObjectNotHasAttribute('migrations', $this->schema->tables);
+        $this->assertFalse(property_exists($this->schema->tables, 'migrations'));
 
         $config                = new Schemas();
         $config->ignoredTables = [];
@@ -58,7 +58,7 @@ final class DatabaseDrafterTest extends SchemasTestCase
         $handler = new DatabaseHandler($config, 'tests');
         $schema  = $handler->draft();
 
-        $this->assertObjectHasAttribute('migrations', $schema->tables);
+        $this->assertTrue(property_exists($schema->tables, 'migrations'));
     }
 
     // -------------------- RELATIONSHIPS --------------------

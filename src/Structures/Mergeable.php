@@ -6,7 +6,9 @@ use ArrayIterator;
 use Countable;
 use IteratorAggregate;
 use Traversable;
+use AllowDynamicProperties;
 
+#[AllowDynamicProperties]
 class Mergeable implements Countable, IteratorAggregate
 {
     /**

@@ -36,7 +36,7 @@ final class LiveTest extends SchemasTestCase
         $schemaFromCache   = $cache->get('schema-testing');
         $this->assertCount(is_countable($schemaFromCache->tables) ? count($schemaFromCache->tables) : 0, $schemaFromService->tables);
 
-        $this->assertObjectHasAttribute('factories', $schemaFromCache->tables);
+        $this->assertTrue(property_exists($schemaFromService->tables, 'factories'));
     }
 
     public function testDatabaseMergeFile()
@@ -50,7 +50,7 @@ final class LiveTest extends SchemasTestCase
 
         $schema = $this->schemas->draft([$databaseHandler, $fileHandler])->get();
 
-        $this->assertObjectHasAttribute('products', $schema->tables);
+        $this->assertTrue(property_exists($schema->tables, 'products'));
         $this->assertCount(3, $schema->tables->workers->relations);
     }
 
@@ -66,7 +66,7 @@ final class LiveTest extends SchemasTestCase
 
         $schema = $this->schemas->draft([$databaseHandler, $modelHandler, $fileHandler])->get();
 
-        $this->assertObjectHasAttribute('products', $schema->tables);
+        $this->assertTrue(property_exists($schema->tables, 'products'));
         $this->assertSame('Tests\Support\Models\FactoryModel', $schema->tables->factories->model);
         $this->assertCount(3, $schema->tables->workers->relations);
     }

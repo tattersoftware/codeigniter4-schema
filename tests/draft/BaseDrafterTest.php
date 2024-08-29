@@ -11,6 +11,8 @@ use Tests\Support\SchemasTestCase;
  */
 final class BaseDrafterTest extends SchemasTestCase
 {
+    protected ?BaseDrafter $handler = null;
+
     protected function setUp(): void
     {
         parent::setUp();

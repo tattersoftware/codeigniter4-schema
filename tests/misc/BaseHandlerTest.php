@@ -8,6 +8,8 @@ use Tests\Support\SchemasTestCase;
  */
 final class BaseHandlerTest extends SchemasTestCase
 {
+    protected ?BaseHandler $handler = null;
+
     protected function setUp(): void
     {
         parent::setUp();
